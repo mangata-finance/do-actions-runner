@@ -34,6 +34,9 @@ cleanup() {
 
 trap 'cleanup' SIGTERM
 
+#run dummy http server to satisfy digital ocean healthcheck
+python -m http.server 8000  &
+
 ./run.sh "$@" &
 
 wait $!
